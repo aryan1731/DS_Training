@@ -1,10 +1,44 @@
-public class WashingMachineTEst {
+//import java.util.Iterator;
+
+public class WashingMachineTest {
 	public static void main(String[] args) {
+		Cloth clothes[] ;
+		clothes = new Cloth[3];
+		
+		
+//		private String material; //
+//		private String color;
+//		private float cost;
+//		private String type;
+//		private boolean clean;
+		
+		
+		clothes[0] = new Cloth("cotton","red",12.5f,"front Load",false);
+		clothes[1] = new Cloth("silk","blue",10f,"top Load",false);
+		clothes[2] = new Cloth("cotton","red",2.5f,"front Load",false);
 		
 		WashingPowder washPowder = new WashingPowder(100,"Nirma", "Front Load", true, 10.0f);
 		
 		System.out.println("wash powder : "+washPowder); //toString is invoked
 		
+		Water water = new Water("soft", 10, "30");
+		
+		Electricity elect = new Electricity("DC", 220f, 10, 20, "Adani");
+		
+		
+		WashingMachine washingMachine = new WashingMachine();
+		
+		
+		
+		
+		
+		
+		Laundry laundry1 = washingMachine.wash(washPowder, water, elect, clothes);
+		
+		for(int i =0 ; i<clothes.length; i++) {
+			System.out.println("clothes " +i +" " +clothes[i] );
+		}
+		System.out.println("laundry : "+laundry1);
 		
 	}
 }
@@ -14,12 +48,17 @@ class Machine {
 }
 class WashingMachine extends Machine { //isA
 	
-	WashingTub washTub = new WashingTub(); //hasA
-
+//	WashingTub washTub = new WashingTub(); //hasA
 	
 		Laundry wash(WashingPowder washPowder, Water water, Electricity elect, Cloth cloth[]) {
 			
-			return null;
+			Laundry laundry1 = new Laundry(cloth.length, 30f, washPowder.getPrice()*washPowder.getQuantity() + elect.getUnitUsed()*elect.getCostPerUnit(), water.getQuantity(), elect.getUnitUsed(), washPowder.getPrice()*washPowder.getQuantity());
+//			public Laundry(int numberOfCloths, float timeRequired, float totalCost, float waterUsed, float electricityUsed,
+//					float costOfWashingPowder)
+			for(int i=0; i<cloth.length ; i++) {
+				cloth[i].setClean(true);
+			}
+			return laundry1;
 		}
 }
 
@@ -103,36 +142,36 @@ class Laundry {
 	
 }
 
-class Tub {
-	
-}
-
-class WashingTub  extends Tub {
-	private int capacity;
-	private String type; //
-	public WashingTub(int capacity, String type) {
-		super();
-		this.capacity = capacity;
-		this.type = type;
-	}
-	@Override
-	public String toString() {
-		return "WashingTub [capacity=" + capacity + ", type=" + type + "]";
-	}
-	public int getCapacity() {
-		return capacity;
-	}
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-}
+//class Tub {
+//	
+//}
+//
+//class WashingTub  extends Tub {
+//	private int capacity;
+//	private String type; //
+//	public WashingTub(int capacity, String type) {
+//		super();
+//		this.capacity = capacity;
+//		this.type = type;
+//	}
+//	@Override
+//	public String toString() {
+//		return "WashingTub [capacity=" + capacity + ", type=" + type + "]";
+//	}
+//	public int getCapacity() {
+//		return capacity;
+//	}
+//	public void setCapacity(int capacity) {
+//		this.capacity = capacity;
+//	}
+//	public String getType() {
+//		return type;
+//	}
+//	public void setType(String type) {
+//		this.type = type;
+//	}
+//	
+//}
 
 class Powder {
 	
@@ -150,7 +189,7 @@ class WashingPowder extends Powder { // isA
 		super();
 		this.quantity = quantity;
 		this.brand = brand;
-		this.type = type;
+		this.type = type;// loading type
 		this.scented = scented;
 		this.price = price;
 	}
