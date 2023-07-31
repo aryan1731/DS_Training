@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login here</title>
+    <link rel="stylesheet" href="Login3.css">
+</head>
+<body>
+    <script src="Validation.js"></script>
+
+    <h1>My Airlines</h1>
+    <hr>
+    <h2>Register Here</h2>
+
+    <form action="Login4.html" onsubmit="return validator();">
+        <table style="margin-right: auto; margin-left: auto">
+			<tr>
+				<td>
+					<label>Enter email</label>
+				</td>
+				<td>
+					<input type="text" onkeyup="validateEmail(this.value)" id="uemail">
+					<span id="emailValidationMsg"></span><br>
+				</td>
+			</tr>
+
+			<tr>
+			    <td>
+			        <label>Enter birthdate</label>
+			    </td>
+			    <td>
+			        <input type="date" name="udob" onblur="validateAge(this.value)">
+			        <span id="ageValidationMsg"></span><br>
+			    </td>
+			</tr>
+
+			<tr>
+			    <td>
+			        <label>Enter username</label>
+			    </td>
+			    <td>
+			        <input type="text" onkeyup="validateUsername()" id="uname">
+			        <span id="nameErr"></span><br>
+			    </td>
+			</tr>
+
+
+			<tr>
+			    <td>
+			        <label>Enter password</label>
+			    </td>
+			    <td>
+			        <input type="password" onkeyup="validatePassword()" id="upass">
+			        <span id="passErr"></span><br>
+			    </td>
+			</tr>
+
+			<tr>
+				<td> Already Registered? Click <a href="Login4.html">Here</a></td>
+			</tr>
+
+			<tr>
+			    <td colspan="2">
+			        <button onclick="return validator();" type="submit">Login</button><br>
+			    </td>
+			</tr>
+
+			<tr>
+				<td>
+					<button style="background-color: red">Clear</button>
+				</td>
+			</tr>
+	</form>
+
+
+	</table>
+
+</body>
+
+</html>
