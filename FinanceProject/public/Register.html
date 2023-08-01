@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+</head>
+<body>
+  <form id="registrationForm">
+    <table>
+      <tr>
+        <td><label for="name">Name:</label></td>
+        <td><input type="text" id="name" required></td>
+      </tr>
+      <tr>
+        <td><label for="dob">Date of Birth:</label></td>
+        <td><input type="date" id="dob" required></td>
+      </tr>
+      <tr>
+        <td><label for="email">Email ID:</label></td>
+        <td><input type="email" id="email" required></td>
+      </tr>
+      <tr>
+        <td><label for="phone">Phone No.:</label></td>
+        <td><input type="tel" id="phone" required></td>
+      </tr>
+      <tr>
+        <td><label for="username">User Name:</label></td>
+        <td><input type="text" id="username" required></td>
+      </tr>
+      <tr>
+        <td><label for="password">Password:</label></td>
+        <td><input type="password" id="password" required></td>
+      </tr>
+      <tr>
+        <td><label for="confirmPassword">Confirm Password:</label></td>
+        <td><input type="password" id="confirmPassword" required></td>
+      </tr>
+      <tr>
+        <td><label for="address">Address:</label></td>
+        <td><textarea id="address" rows="4" required></textarea></td>
+      </tr>
+      <tr>
+        <td><label>Card Type:</label></td>
+        <td>
+          <input type="radio" id="gold" name="cardType" value="Gold" required>
+          <label for="gold">Gold</label>
+          <input type="radio" id="titanium" name="cardType" value="Titanium" required>
+          <label for="titanium">Titanium</label>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="selectBank">Select Bank:</label></td>
+        <td><input type="text" id="bank" required></td>
+      </tr>
+      <tr>
+        <td><label for="savingsAccount">Savings Account No.:</label></td>
+        <td><input type="text" id="savingsAccount" required></td>
+      </tr>
+      <tr>
+        <td><label for="ifsc">IFSC Code:</label></td>
+        <td><input type="text" id="ifsc" required></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="REGISTER">
+          <input type="reset" value="RESET">
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <p>Already a member? <a href="Login.html">Login Here</a></p>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Retrieve form values
+      const name = document.getElementById("name").value;
+      const dob = document.getElementById("dob").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const address = document.getElementById("address").value;
+      const cardType = document.querySelector('input[name="cardType"]:checked').value;
+      const selectBank = document.getElementById("selectBank").value;
+      const savingsAccount = document.getElementById("savingsAccount").value;
+      const ifsc = document.getElementById("ifsc").value;
+
+      // Do something with the form values (e.g., submit to a server or validate)
+
+      // For now, let's just display the values in the console
+      console.log("Name:", name);
+      console.log("Date of Birth:", dob);
+      console.log("Email ID:", email);
+      console.log("Phone No.:", phone);
+      console.log("User Name:", username);
+      console.log("Password:", password);
+      console.log("Confirm Password:", confirmPassword);
+      console.log("Address:", address);
+      console.log("Card Type:", cardType);
+      console.log("Select Bank:", selectBank);
+      console.log("Savings Account No.:", savingsAccount);
+      console.log("IFSC Code:", ifsc);
+
+      // Clear the form after submission
+      this.reset();
+    });
+  </script>
+</body>
+</html>
