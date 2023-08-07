@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+
+	<style>
+		body {
+			height: 100%;
+			background-image: linear-gradient(to bottom right, violet, white);
+
+
+
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 0px;
+		}
+
+		button {
+			width: 250px;
+			height: 30px;
+			background-color: purple;
+			border: none;
+			border-radius: 5px;
+			font-size: 14px;
+			background-image: linear-gradient(to bottom right, violet, pink);
+
+		}
+
+		.wrapper {
+			height: 100vh;
+			width: 100vw;
+			display: flex;
+			justify-content: center;
+		}
+
+		.container {
+			background-color: white;
+			height: 70%;
+			margin: auto;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			box-sizing: border-box;
+			border-radius: 15px;
+			padding: 25px;
+
+		}
+
+		.container:hover {
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		.pwd {
+			float: right;
+		}
+
+
+
+		.form input {
+			background-color: #f2f2f2;
+			width: 50%;
+			border: 0;
+			margin: 0 0 15px;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+
+		.radiobutton {
+			width: 10% !important
+		}
+
+		.regs {
+			text-align: center
+		}
+	</style>
+
+
+	
+
+
+	<title>Insert title here</title>
+
+</head>
+
+<body>
+
+	<div class="wrapper">
+		<div class="container">
+			<h1 align="center">
+				New User
+			</h1>
+			<form class="form">
+				Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input list="browsers"
+					name="browser" placeholder="Name" id="name"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+
+
+
+				UserName : &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="Enter Username"
+					id="username"></input>
+				<br>
+				Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+					placeholder="Enter Email" id="email"></input>
+				<br>
+
+				Age : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+					type="text" placeholder="Enter Age" id="age"></input><br>
+				Salary : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+					placeholder="Enter Salary" id="salary"></input><br>
+				Location :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+					placeholder="Enter Location" id="address"></input><br>
+				Password : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" placeholder="Enter Password"
+					id="password"></input><br>
+				PhoneNo : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="Enter PhoneNo"
+					id="phone"></input>
+
+
+
+			</form>
+			<div id="result">
+				<form id="card">
+					Card Type : &nbsp;&nbsp;&nbsp;<input class="radiobutton" type="radio" value="gold"
+						name="cardt">Gold<input class="radiobutton" value="titanium" type="radio"
+						name="cardt">Titanium<br>
+				</form>
+			</div>
+			<br><br>
+
+			<form >
+				<div class="regs">
+
+					<button class="regs" type="submit" onclick="sendAddInfo()">Register</button>
+				</div>
+			</form>
+
+
+
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+
+
+	<style>
+		h1 {
+			text-align: center;
+			margin: 0px;
+		}
+
+		button {
+			width: 250px;
+			height: 30px;
+			background-color: purple;
+			border: none;
+			border-radius: 5px;
+			font-size: 14px;
+			background-image: linear-gradient(to bottom right, aqua, white);
+			margin-left: 40px;
+		}
+
+		.wrapper {
+			height: 100vh;
+			width: 100vw;
+			display: flex;
+			justify-content: center;
+		}
+
+		.container {
+			background-color: white;
+			height: 50%;
+			margin: auto;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			box-sizing: border-box;
+			border-radius: 15px;
+			padding: 25px;
+
+		}
+
+		.container:hover {
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		.pwd {
+			float: right;
+		}
+
+		body {
+			height: 100%;
+			background-image: linear-gradient(to bottom right, aqua, white);
+			background-repeat: no-repeat
+		}
+
+		.form input {
+			background-color: #f2f2f2;
+			width: 50%;
+			border: 0;
+			margin: 0 0 15px;
+			padding: 10px;
+			box-sizing: border-box;
+			margin-right: 10px;
+		}
+
+		.inputform {
+			display: flex;
+		}
+
+		label {
+			margin-bottom: 40px;
+		}
+	</style>
+
+
+
+
+	<title>Insert title here</title>
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1>
+				Modify It
+			</h1><BR><br>
+
+			<form class="form">
+
+				Product Id :
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+					type="text" placeholder="Enter ProductId" id="product_Id"></input><br>
+				Product Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+					placeholder="Enter ProductName" id="product_Name"></input><br>
+				Product Price : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+					placeholder="Enter ProductPrice" id="product_Price"></input><br>
+				Product Desc : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+					placeholder="Enter ProductPrice" id="product_Desc"></input><br>
+				Product ImageURL : &nbsp;&nbsp;<input type="text" placeholder="Enter ProductPrice"
+					id="image_URL"></input>
+
+
+
+				<br><br>
+
+				<button type="submit" onclick="sendInfo()">Modify</button><br><br>
+
+
+
+			</form>
+		</div>
+	</div>
+
+
+
+
+
+
+</body>
+
+</html>

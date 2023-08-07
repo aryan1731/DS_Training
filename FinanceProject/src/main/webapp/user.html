@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Welcome</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<script type="text/javascript">
+	var request;
+
+
+	window.onload = function () {
+		sendInfo();
+
+	}
+
+	function sendInfo() {
+
+		var url = 'http://localhost:8080/ProjectTry/rest/finance/getusers/';
+		//alert(url);
+		if (window.XMLHttpRequest) // non microsoft
+		{
+			request = new XMLHttpRequest();
+		}
+		else if (window.ActiveXObject) {//edge 
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		try {
+			request.onreadystatechange = getInfo;
+			//request.responseType='json'; // or dont write this just convert text to json using JSON.parse
+			request.open("GET", url, true);
+			request.send();
+		} catch (e) {
+			alert("Unable to connect to the server");
+		}
+	}
+	function getInfo() {
+		if (request.readyState == 0) {
+			console.log("request not initialized");
+		}
+		else {
+			console.log("request initialized");
+		}
+		if (request.readyState == 1) {
+			console.log("connected to the server");
+		}
+		else {
+			console.log("request initialized");
+		}
+		if (request.readyState == 4) {
+
+
+			var value = [];
+
+
+
+
+			value = JSON.parse(request.response);
+			//value.toString();
+			console.log(value);
+			let hrow = ``;
+			hrow += `<tr>`;
+			for (let key in value[0]) {
+				console.log(key)
+				hrow += `<th scope="col">` + key + `</th>`;
+			}
+
+			hrow += `</tr>`;
+			document.getElementById("table-head").innerHTML = hrow;
+			let row = ``;
+			value.forEach((v) => {
+				console.log(v);
+
+				if (v.cardType == "gold")
+					row += `<tr style="background-color:yellow">`;
+				else if (v.cardType == "titanium")
+					row += `<tr style="background-color:aqua">`;
+				else
+					row += `<tr>`;
+
+				for (let key in v) {
+
+					row += `<td scope="col">` + v[key] + `</td>`;
+				}
+
+
+				row += `</tr>`
+				document.getElementById("table-body").innerHTML = row;
+			})
+		}
+
+	}
+
+	//var request;
+	function sendDeleteInfo(prodId) {
+
+		/* var prodId = document.getElementById("product_Id").value;
+		console.log('Id : '+prodId);
+		
+		var datatosend={
+				
+				"productId" : 2}
+	    
+		datatosend.productId = prodId */
+
+
+		var url = 'http://localhost:8080/ProjectTry/rest/finance/deleteproduct/' + prodId + '/';
+		//alert(url);
+		console.log('sendInfo: url : ' + url);
+		if (window.XMLHttpRequest) // non microsoft
+		{
+			request = new XMLHttpRequest();
+		}
+		else if (window.ActiveXObject) {//edge 
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		try {
+			request.onreadystatechange = getDeleteInfo;
+			//request.responseType='json'; // or dont write this just convert text to json using JSON.parse
+			request.open("DELETE", url, true);
+			request.send();
+		} catch (e) {
+			alert("Unable to connect to the server");
+		}
+	}
+	function getDeleteInfo() {
+		if (request.readyState == 0) {
+			console.log('request not initialized');
+		}
+		else {
+			console.log('request initialized');
+		}
+		if (request.readyState == 1) {
+			console.log('connected to the server');
+		}
+		else {
+			console.log('request initialized');
+		}
+		if (request.readyState == 4) {
+			console.log('status ' + request.status);
+			var val = request.responseText;
+			alert(val);
+			window.location.href = "index.html";
+
+
+
+			//document.getElementById('dataHere').innerHTML=val;
+		}
+	}
+</script>
+
+<body>
+	<h1>All Users</h1>
+
+	<div style="text-align:right;margin-right:40px;">
+		<a href=index.html>View Product</a>
+	</div><br>
+	<div style="text-align:right;margin-right:40px;">
+		<a href=product.html>back to start</a>
+	</div><br>
+	<table class="table table-hover" border=3>
+		<thead id="table-head">
+		</thead>
+		<tbody id="table-body">
+		</tbody>
+	</table>
+
+
+	<input type="button" onclick="window.location.href = 'Modifyuser.html';" value="Modify User" class="btn btn-info">
+
+
+
+</body>

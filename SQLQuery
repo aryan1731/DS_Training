@@ -1,0 +1,51 @@
+create database finance;
+use finance;
+CREATE TABLE Customer(
+	CustomerID INT NOT NULL PRIMARY KEY,
+	Name VARCHAR(255),
+	PhoneNo LONG,
+	Email VARCHAR(255),
+	UserName VARCHAR(255),
+	Password VARCHAR(255),
+	Address VARCHAR(255),
+	Age INT,
+	Salary INT,
+	CardType VARCHAR(255)
+);
+CREATE TABLE EMICard(
+	CardNo INT NOT NULL PRIMARY KEY,
+	CardIssueDate DATE,
+	ValidityYears INT,
+	RemainingCredit INT,
+	CardType VARCHAR(255),
+        CustomerID INT,
+        FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
+);
+
+CREATE TABLE Product(
+	ProductID INT NOT NULL PRIMARY KEY,
+	ProductName VARCHAR(255),
+	ProductDesc VARCHAR(255),
+	ProductPrice INT,
+	ImageURL VARCHAR(255)
+);
+ALTER TABLE Product RENAME COLUMN SetImageURL to imageURL;
+
+
+CREATE TABLE OrderDetails(
+	OrderID INT,
+	OrderDate DATE,
+	EMIPeriod INT,
+    CustomerID INT,
+    ProductID INT,
+	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+INSERT INTO Customer (CustomerID,Name, PhoneNo, Email, UserName, Password, Address, Age, Salary, CardType) 
+values (1,'Roy',62325263,'r@gmail.com', 'rew','pass','mumbai', 21, 24000,'Gold');
+INSERT INTO Customer (CustomerID,Name, PhoneNo, Email, UserName, Password, Address, Age, Salary, CardType) 
+values (2,'Marie',62325263,'r@gmail.com', 'rew','pass','mumbai', 21, 24000,'Gold');
+INSERT INTO Product (ProductID,ProductName, ProductDesc,ProductPrice, SetImageURL) 
+values (9, 'SmartPhone','TouchScreen', 50000, 'pdsfdf.in');
+INSERT INTO OrderDetails (OrderID,OrderDate, EMIPeriod, CustomerID, ProductID) 
+values (1234, '2023-08-06', 3,1,4);
