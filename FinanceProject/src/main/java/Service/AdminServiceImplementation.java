@@ -4,19 +4,28 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 
+import DAO.OrderDetailsDAO;
+import DAO.OrderDetailsDAOImplementation;
 import DAO.CustomerDAO;
 import DAO.CustomerDAOImplementation;
 import DAO.EMICardDAO;
 import DAO.EMICardDAOImplementation;
+import DAO.ProductDAOImplementation;
+import DAO.ProductDAO;
 import entities.Customer;
 import entities.EMICard;
+import entities.Product;
 
 public class AdminServiceImplementation implements AdminService {
-	CustomerDAO customerdao;
-
-	public AdminServiceImplementation() {
-		customerdao = new CustomerDAOImplementation();
-	}
+	
+	CustomerDAO customerdao = new CustomerDAOImplementation();
+	ProductDAO productdao = new ProductDAOImplementation();
+	EMICardDAO emidao = new EMICardDAOImplementation();
+	OrderDetailsDAO ordDAO = new OrderDetailsDAOImplementation();
+	
+//	public AdminServiceImplementation() {
+//		customerdao = 
+//	}
 
 	@Override
 	public void ApproveUser(Customer customer1) throws CustomerNotEligibleException, CustomerAlreadyPresentException {
@@ -61,6 +70,24 @@ public class AdminServiceImplementation implements AdminService {
 
 	}
 
+	public void AddProductService(Product product1) throws ProductAlreadyExistsException {
+		// TODO Auto-generated method stub
+		List<Product> allproduct = productdao.selectAllProducts();
+		boolean productFound = false;
+		for (Product product : allproduct) {
+			if (product.getProductName().equals(product1.getProductName())
+					&& (product.getProductPrice() == product1.getProductPrice())) {
+				productFound = true;
+				break;
+			}
+		}
+
+		if (productFound == true)
+			throw new ProductAlreadyExistsException("Product is already present.");
+		else
+			productdao.insertProduct(product1);
+
+	}
 	@Override
 	public List<Customer> Viewalluser() {
 		// TODO Auto-generated method stub
@@ -68,18 +95,20 @@ public class AdminServiceImplementation implements AdminService {
 		return customerdao.selectAllCustomers();
 	}
 
-	@Override
-	public void RevokeUser(Customer customer1) {
+	public void RevokeUser(int customerID) {
 		// TODO Auto-generated method stub
 
-		EMICardDAO emidao = new EMICardDAOImplementation();
+		
 //		EMICardService emiservice = new EMICardServiceImplementation();
 		
 //		EMICard emiobj = emiservice.viewEMICard(1);
 		
+		emidao.deleteEMICard(customerID);
+		ordDAO.deleteOrderDetails(customerID);
 //		EMICard emiCard= emiservice.viewEMICard(customer1.getCustomerId());
-		emidao.deleteEMICard(customer1.getCustomerId());
-		System.out.println("cutomer id : " +customer1.getCustomerId()+" was deleted");
+		customerdao.deleteCustomer(customerID);
+		
+		System.out.println("cutomer id : " +customerID+" was deleted");
 //		emiCard.deleteEMICard(1);
 
 

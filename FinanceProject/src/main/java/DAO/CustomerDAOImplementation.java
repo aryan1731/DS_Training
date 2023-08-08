@@ -1,15 +1,18 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import entities.Customer;
+import entities.EMICard;
 
 public class CustomerDAOImplementation implements CustomerDAO {
 
@@ -123,6 +126,10 @@ public class CustomerDAOImplementation implements CustomerDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		EMICard emicard = new EMICard(customer1.getCustomerId(),Date.valueOf(LocalDate.now()), 5,customer1.getSalary()> 100000 ? 100000:50000, customer1.getCardType(),customer1.getCustomerId());
+//		 CardNo | CardIssueDate | ValidityYears | RemainingCredit | CardType | CustomerID
+		EMICardDAO emidao = new EMICardDAOImplementation();
+		emidao.insertEMICard(emicard);
 
 	}
 

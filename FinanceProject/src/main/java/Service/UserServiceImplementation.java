@@ -1,31 +1,36 @@
 package Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
-
-import DAO.CustomerDAO;
-import DAO.CustomerDAOImplementation;
-import DAO.EMICardDAO;
-import DAO.EMICardDAOImplementation;
+import DAO.*;
 import entities.Customer;
 import entities.EMICard;
+import entities.OrderDetails;
 import entities.Product;
 
 public class UserServiceImplementation implements UserService {
 
-	CustomerDAO customerdao;
-
-	public UserServiceImplementation() {
-		customerdao = new CustomerDAOImplementation();
-	}
+	CustomerDAO customerdao = new CustomerDAOImplementation();
+	OrderDetailsDAO ordDAO = new OrderDetailsDAOImplementation();
+	
+//	public UserServiceImplementation() {
+//		customerdao
+//	}
 
 	@Override
-	public void PlaceOrder(Product product1, int customerId) {
+	public void PlaceOrder(Product product1, int customerId, int emiPeriod) {
 		// TODO Auto-generated method stub
 		EMICardDAO emidao = new EMICardDAOImplementation();
 		EMICard emiCard = emidao.selectEMICard(customerId);
+		
 		if(product1.getProductPrice() <= emiCard.getRemainingCredit()) {
 			
+			emiCard.setRemainingCredit(emiCard.getRemainingCredit() - (product1.getProductPrice()/emiPeriod));
 			
+			OrderDetails ord1 = new OrderDetails(emiPeriod*emiPeriod +customerId*customerId+customerId + product1.getProductId()*product1.getProductId()-product1.getProductId() , Date.valueOf(LocalDate.now()), emiPeriod, customerId, product1.getProductId());
+			//  OrderID | OrderDate  | EMIPeriod | CustomerID | ProductID |
+			ordDAO.insertOrderDetails(ord1);
 		}
 		
 	}
