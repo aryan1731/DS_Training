@@ -22,7 +22,7 @@ class AdminServiceImplementationTest {
 //	}
 
 	@Test
-	void testModifyUser() {
+	void TestModifyUser() {
 		System.out.println("test started");
 		Assertions.assertTrue(adminService != null);
 		System.out.println("Got the Service : " + adminService);
@@ -53,7 +53,7 @@ class AdminServiceImplementationTest {
 	}
 
 	@Test
-	void testViewalluser() {
+	void TestViewalluser() {
 		System.out.println(adminService.Viewalluser());
 	}
 

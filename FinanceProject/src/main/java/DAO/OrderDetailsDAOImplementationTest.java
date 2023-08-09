@@ -20,10 +20,10 @@ class OrderDetailsDAOImplementationTest {
 //		OrderDetails ord1 = new OrderDetails(567, Date.valueOf("2023-04-03"), 3, 1, 6);
 		// orddao.insertOrderDetails(ord1);
 		// orddao.updateOrderDetails(ord1);
-//		orddao.deleteOrderDetails(567);
-		List<OrderDetails> ordobj = orddao.selectCustomerOrders(1);
+		orddao.deleteOrderDetails(137);
+//		List<OrderDetails> ordobj = orddao.selectCustomerOrders(1);
 		// List<OrderDetails> ordobj = orddao.selectAllOrders();
-		System.out.println("ORD Obj : " + ordobj);
+//		System.out.println("ORD Obj : " + ordobj);
 		System.out.println("Test over...");
 	}
 

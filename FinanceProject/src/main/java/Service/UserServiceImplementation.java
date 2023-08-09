@@ -8,25 +8,30 @@ import entities.Customer;
 import entities.EMICard;
 import entities.OrderDetails;
 import entities.Product;
+import Service.*;
 
 public class UserServiceImplementation implements UserService {
 
 	CustomerDAO customerdao = new CustomerDAOImplementation();
 	OrderDetailsDAO ordDAO = new OrderDetailsDAOImplementation();
-	
+	EMICardDAO emidao = new EMICardDAOImplementation();
+	ProductDAO proddao = new ProductDAOImplementation();
 //	public UserServiceImplementation() {
 //		customerdao
 //	}
 
 	@Override
-	public void PlaceOrder(Product product1, int customerId, int emiPeriod) {
+	public void PlaceOrder(int productId, int customerId, int emiPeriod) {
 		// TODO Auto-generated method stub
-		EMICardDAO emidao = new EMICardDAOImplementation();
+		
 		EMICard emiCard = emidao.selectEMICard(customerId);
+		Product product1 = proddao.selectProduct(productId);
 		
 		if(product1.getProductPrice() <= emiCard.getRemainingCredit()) {
-			
-			emiCard.setRemainingCredit(emiCard.getRemainingCredit() - (product1.getProductPrice()/emiPeriod));
+			EMICard emiCard2 = new EMICard((int)emiCard.getCardNo(), emiCard.getCardIssueDate(), emiCard.getValidityYears(), emiCard.getRemainingCredit() - (product1.getProductPrice()/emiPeriod), emiCard.getCardType(), emiCard.getCustomerId());
+//| CardNo | CardIssueDate | ValidityYears | RemainingCredit | CardType | CustomerID
+			emidao.updateEMICard(emiCard2);
+//			emiCard.setRemainingCredit(emiCard.getRemainingCredit() - (product1.getProductPrice()/emiPeriod));
 			
 			OrderDetails ord1 = new OrderDetails(emiPeriod*emiPeriod +customerId*customerId+customerId + product1.getProductId()*product1.getProductId()-product1.getProductId() , Date.valueOf(LocalDate.now()), emiPeriod, customerId, product1.getProductId());
 			//  OrderID | OrderDate  | EMIPeriod | CustomerID | ProductID |
@@ -36,16 +41,23 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public void ViewEMI(int customerId) {
+	public int ViewEMI(int customerId) {
 		// TODO Auto-generated method stub
-		
-		
+		List<OrderDetails> ordobj = ordDAO.selectCustomerOrders(customerId);
+		int EMI = 0;
+		for( OrderDetails ord : ordobj) {
+			Product prod = proddao.selectProduct(ord.getProductId());
+			
+			EMI += (prod.getProductPrice()/ord.getEmiPeriod());
+		}
+		return EMI;
 	}
 
 	@Override
-	public void ViewBalance(int customerId) {
+	public int ViewBalance(int customerId) {
 		// TODO Auto-generated method stub
-		
+		EMICard emiCard = emidao.selectEMICard(customerId);
+		return emiCard.getRemainingCredit();
 	}
 
 //	@Override

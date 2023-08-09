@@ -8,9 +8,9 @@ import entities.Product;
 public interface UserService {
 //	Product product1 = null;
 	/*add product to orderlist	 */
-	void PlaceOrder(Product product1, int customerId, int emiPeriod);
+	void PlaceOrder(int productId, int customerId, int emiPeriod);
 
-	void ViewEMI(int customerId);
+	int ViewEMI(int customerId);
 	
-	void ViewBalance(int customerId);
+	int ViewBalance(int customerId);
 }

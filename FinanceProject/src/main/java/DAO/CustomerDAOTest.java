@@ -16,7 +16,8 @@ class CustomerDAOTest {
 		Assertions.assertTrue(custdao != null);
 		System.out.println("Got the DAO : " + custdao);
 		// Customer custobj = custdao.selectCustomer(1);
-		Customer cust1 = new Customer(13, "Piya", 278398126, "ry@gmail.com", "riy","pass", "Mum", 21, 400000, "Gold");
+		Customer cust1 = new Customer(7, "riya", 278398126, "ry@gmail.com", "riy","pass", "Mum", 21, 400000, "Gold");
+//		CustomerID | Name  | PhoneNo   | Email        | UserName | Password | Address | Age  | Salary | CardType
 		// int customerId, String name, long phoneNo, String email, String userName,
 		// String password,
 		// String address, int age, int salary, String cardType
@@ -24,7 +25,9 @@ class CustomerDAOTest {
 		// custdao.updateCustomer(cust1);
 		// custdao.deleteCustomer(5);
 		// System.out.println("Customer Obj : " + custobj);
+//		System.out.println("getting all customers");
 //		List<Customer> custobj = custdao.selectAllCustomers();
+//		Assertions.assertTrue(custobj!= null);
 //		System.out.println("Customer Obj : " + custobj);
 		System.out.println("Test over...");
 	}
